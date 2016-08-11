@@ -1,7 +1,7 @@
 package = "lua_system_constants"
 version = "0.1.1-0"
 source = {
-  url = "https://github.com/vkorehov/lua-system-constants.git"
+  url = "https://github.com/vkorehov/lua-system-constants"
 }
 description = {
   summary = "System Constants",
