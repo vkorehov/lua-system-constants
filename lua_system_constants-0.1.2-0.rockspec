@@ -1,5 +1,5 @@
 package = "lua_system_constants"
-version = "0.1.1-0"
+version = "0.1.2-0"
 source = {
   url = "https://github.com/vkorehov/lua-system-constants",
   tag = "master"
