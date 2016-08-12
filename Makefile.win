@@ -1,23 +1,24 @@
-LUA ?= lua5.1
-LUA_LIBDIR ?= $(shell pkg-config $(LUA) --libs)
-LUA_INCDIR ?= $(shell pkg-config $(LUA) --cflags)
+LUA ?= luajit
+LUA_LIBDIR = -LC:/LuaJIT/lib
+LUA_INCDIR = -IC:/LuaJIT/include
+CC = gcc
 
-LIBFLAG ?= -shared
-CFLAGS ?= -O2 -Wall -Werror
+LIBFLAG = -shared -llua51
+CFLAGS = -O2 -Wall -Werror
 
 .PHONY: all clean install
 
-all: lua_system_constants.so
+all: lua_system_constants.dll
 
-lua_system_constants.so: lua_system_constants.o
+lua_system_constants.dll: lua_system_constants.o
 	$(CC) $(LIBFLAG) $(LUA_LIBDIR) -o $@ $<
 	$(LUA) test/lua_system_constants_test.lua
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) -fPIC $(LUA_INCDIR) $< -o $@
+	$(CC) -c $(CFLAGS) $(LUA_INCDIR) $< -o $@
 
-install: lua_system_constants.so
-	cp lua_system_constants.so $(INST_LIBDIR)
+install: lua_system_constants.dll
+	cp lua_system_constants.dll $(INST_LIBDIR)
 
 clean:
-	rm -f *.so *.o *.rock
+	rm -f *.dll *.o *.rock

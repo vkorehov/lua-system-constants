@@ -9,6 +9,32 @@ Retrieve some specific constants values based on the system this library has bee
 #include <fcntl.h>
 #include <sys/stat.h>
 
+#ifndef S_IRGRP
+#define S_IRGRP S_IRUSR
+#endif
+
+#ifndef S_IWGRP
+#define S_IWGRP S_IWUSR
+#endif
+
+#ifndef S_IXGRP
+#define S_IXGRP S_IXUSR
+#endif
+
+#ifndef S_IROTH
+#define S_IROTH S_IRUSR
+#endif
+
+#ifndef S_IWOTH
+#define S_IWOTH S_IWUSR
+#endif
+ 
+#ifndef S_IXOTH
+#define S_IXOTH S_IXUSR
+#endif
+
+
+
 #if LUA_VERSION_NUM < 502
 # define luaL_newlib(L,l) (lua_newtable(L), luaL_register(L,NULL,l))
 # define lua_rawlen lua_objlen
